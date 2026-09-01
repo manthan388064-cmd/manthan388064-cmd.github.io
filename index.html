@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manthan | Emerging Software Developer</title>
+<meta name="description" content="Manthan — Computer Science Engineering student and Emerging Software Developer portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1526;
+    --bg-grid: rgba(255,255,255,0.035);
+    --surface:#101f36;
+    --surface-2:#132644;
+    --line:#24405f;
+    --text:#e7edf5;
+    --muted:#8ea3bd;
+    --accent:#ffb545;
+    --accent-dim:#9c6b23;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Inter', sans-serif;
+    --disp: 'Space Grotesk', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      linear-gradient(var(--bg-grid) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px) 0 0/40px 40px,
+      var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+  ::selection{background:var(--accent);color:#1a1204;}
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,21,38,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:600;font-size:1.05rem;}
+  .brand .mark{
+    width:34px;height:34px;border:1.5px solid var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:0.85rem;color:var(--accent);
+    transform:rotate(45deg);
+  }
+  .brand .mark span{transform:rotate(-45deg);}
+  .navlinks{display:flex;gap:32px;font-size:0.92rem;color:var(--muted);}
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover{color:var(--accent);}
+  .navcta{
+    font-family:var(--mono);font-size:0.78rem;color:var(--accent);
+    border:1px solid var(--accent-dim);padding:7px 14px;
+  }
+  .navtoggle{display:none;background:none;border:1px solid var(--line);color:var(--text);width:38px;height:38px;font-size:1.1rem;}
+
+  /* HERO */
+  .hero{
+    padding:96px 0 80px;
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;
+  }
+  .status{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:0.78rem;color:var(--muted);
+    border:1px solid var(--line);padding:6px 12px;margin-bottom:28px;
+  }
+  .status .dot{width:7px;height:7px;background:var(--accent);border-radius:50%;}
+  .hero h1{
+    font-family:var(--disp);font-weight:600;
+    font-size:clamp(2.3rem, 4.2vw, 3.4rem);
+    line-height:1.12;letter-spacing:-0.01em;
+    margin-bottom:20px;
+  }
+  .hero h1 em{
+    font-style:normal;color:var(--accent);
+  }
+  .hero p.lede{
+    color:var(--muted);font-size:1.08rem;max-width:46ch;margin-bottom:34px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px;}
+  .btn{
+    font-family:var(--sans);font-weight:600;font-size:0.94rem;
+    padding:13px 24px;border:1px solid transparent;cursor:pointer;
+  }
+  .btn-primary{background:var(--accent);color:#1a1204;}
+  .btn-primary:hover{background:#ffc673;}
+  .btn-ghost{border-color:var(--line);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+  .hero-links{display:flex;gap:22px;font-family:var(--mono);font-size:0.82rem;color:var(--muted);}
+  .hero-links a:hover{color:var(--accent);}
+
+  .hero-card{
+    background:var(--surface);border:1px solid var(--line);
+    position:relative;
+  }
+  .hero-card .tab{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 16px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:0.76rem;color:var(--muted);
+  }
+  .hero-card .tab .dots span{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;background:var(--line);}
+  .hero-card pre{
+    font-family:var(--mono);font-size:0.83rem;color:#c9d6e6;
+    padding:20px;overflow-x:auto;line-height:1.7;
+  }
+  .hero-card pre .k{color:var(--accent);}
+  .hero-card pre .s{color:#8fd3a0;}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);}
+  .stats div{padding:16px;text-align:center;border-right:1px solid var(--line);}
+  .stats div:last-child{border-right:none;}
+  .stats .num{font-family:var(--disp);font-size:1.4rem;color:var(--accent);font-weight:600;}
+  .stats .lbl{font-size:0.72rem;color:var(--muted);margin-top:2px;}
+
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;padding-top:64px;}
+    .navlinks{display:none;}
+  }
+
+  /* SECTION shared */
+  section{padding:88px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:44px;}
+  .sec-index{font-family:var(--mono);color:var(--accent-dim);font-size:0.85rem;}
+  .sec-head h2{font-family:var(--disp);font-weight:600;font-size:clamp(1.6rem,2.6vw,2.1rem);}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:56px;}
+  .about-grid p{color:var(--muted);margin-bottom:16px;max-width:60ch;}
+  .about-grid p strong{color:var(--text);}
+  .facts{border:1px solid var(--line);}
+  .facts div{
+    display:flex;justify-content:space-between;padding:14px 18px;
+    border-bottom:1px solid var(--line);font-size:0.92rem;
+  }
+  .facts div:last-child{border-bottom:none;}
+  .facts span:first-child{color:var(--muted);font-family:var(--mono);font-size:0.78rem;}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+
+  /* SKILLS */
+  .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .skill-card{background:var(--surface);padding:24px;}
+  .skill-card .ico{font-family:var(--mono);color:var(--accent);font-size:1.3rem;margin-bottom:14px;}
+  .skill-card h3{font-family:var(--disp);font-size:1rem;margin-bottom:12px;}
+  .skill-card ul{list-style:none;font-size:0.86rem;color:var(--muted);}
+  .skill-card li{padding:4px 0;}
+  @media(max-width:860px){.skill-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* PROJECTS */
+  .proj{
+    display:grid;grid-template-columns:1fr 1.5fr;gap:0;border:1px solid var(--line);margin-bottom:22px;
+  }
+  .proj-visual{
+    background:var(--surface-2);display:flex;align-items:center;justify-content:center;
+    font-family:var(--disp);font-size:1.6rem;color:var(--accent);border-right:1px solid var(--line);
+    padding:24px;text-align:center;
+  }
+  .proj-body{padding:26px 30px;}
+  .proj-tag{font-family:var(--mono);font-size:0.72rem;color:var(--accent-dim);margin-bottom:6px;letter-spacing:0.02em;}
+  .proj-body h3{font-family:var(--disp);font-size:1.2rem;margin-bottom:10px;}
+  .proj-body p{color:var(--muted);font-size:0.92rem;margin-bottom:14px;max-width:56ch;}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+  .chip{font-family:var(--mono);font-size:0.72rem;color:var(--muted);border:1px solid var(--line);padding:4px 9px;}
+  .proj-link{font-size:0.86rem;color:var(--accent);font-weight:600;}
+  @media(max-width:700px){.proj{grid-template-columns:1fr;}.proj-visual{border-right:none;border-bottom:1px solid var(--line);padding:32px;}}
+
+  /* EXPERIENCE / TIMELINE */
+  .timeline{border-left:1px solid var(--line);padding-left:34px;position:relative;}
+  .tl-item{position:relative;margin-bottom:36px;}
+  .tl-item::before{
+    content:"";position:absolute;left:-40px;top:4px;width:11px;height:11px;
+    background:var(--bg);border:2px solid var(--accent);border-radius:50%;
+  }
+  .tl-date{font-family:var(--mono);font-size:0.76rem;color:var(--accent-dim);margin-bottom:6px;}
+  .tl-item h3{font-family:var(--disp);font-size:1.08rem;margin-bottom:6px;}
+  .tl-item p{color:var(--muted);font-size:0.92rem;max-width:60ch;}
+
+  /* ACHIEVEMENTS */
+  .mile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:36px;}
+  .mile{background:var(--surface);padding:32px 24px;text-align:center;}
+  .mile .num{font-family:var(--disp);font-size:2.1rem;color:var(--accent);font-weight:600;}
+  .mile .lbl{color:var(--muted);font-size:0.88rem;margin-top:8px;}
+  .cert-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .cert{border:1px solid var(--line);padding:14px 18px;font-size:0.85rem;flex:1;min-width:200px;}
+  .cert .c-name{font-weight:600;margin-bottom:4px;}
+  .cert .c-meta{font-family:var(--mono);font-size:0.72rem;color:var(--muted);}
+  @media(max-width:700px){.mile-grid{grid-template-columns:1fr;}}
+
+  /* CONTACT */
+  .contact-box{
+    border:1px solid var(--line);padding:60px 50px;text-align:center;background:var(--surface);
+    position:relative;
+  }
+  .contact-box::before,.contact-box::after{
+    content:"+";position:absolute;color:var(--accent-dim);font-family:var(--mono);font-size:1.1rem;
+  }
+  .contact-box::before{top:12px;left:12px;}
+  .contact-box::after{bottom:12px;right:12px;}
+  .contact-box h2{font-family:var(--disp);font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:16px;}
+  .contact-box p{color:var(--muted);max-width:52ch;margin:0 auto 32px;}
+  .contact-links{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:34px;font-family:var(--mono);font-size:0.85rem;color:var(--muted);}
+  .contact-links a:hover{color:var(--accent);}
+
+  footer{padding:28px 0;text-align:center;color:var(--muted);font-size:0.8rem;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand"><span class="mark"><span>M</span></span> Manthan</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#hardware">Hardware</a>
+      <a href="#community">Community</a>
+      <a href="#experience">Training</a>
+      <a href="#achievements">Achievements</a>
+    </div>
+    <a class="navcta" href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" style="border-top:none;padding-top:0;">
+  <div class="wrap" style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;grid-column:1/-1;">
+    <div>
+      <div class="status"><span class="dot"></span> Available for opportunities</div>
+      <h1>Hi, I'm Manthan,<br>an <em>Emerging Software Developer.</em></h1>
+      <p class="lede">Computer Science &amp; Engineering student who loves turning ideas into responsive, practical and user-friendly web experiences — one project at a time.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">Explore My Work ↗</a>
+        <a class="btn btn-ghost" href="#contact">Let's Connect</a>
+      </div>
+      <div class="hero-links">
+        <a href="#">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/manthan-manthan-2834b0381/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="#">Email ↗</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="tab">
+        <span class="dots"><span></span><span></span><span></span></span>
+        <span>developer.js</span>
+      </div>
+      <pre><span class="k">const</span> engineer = {
+  name: <span class="s">"Manthan"</span>,
+  focus: <span class="s">"Emerging Software Developer"</span>,
+  loves: [<span class="s">"Code"</span>, <span class="s">"Design"</span>],
+  mindset: <span class="s">"Keep Learning"</span>
+};</pre>
+      <div class="stats">
+        <div><div class="num">1</div><div class="lbl">Anti-Sinking Car</div></div>
+        <div><div class="num">2</div><div class="lbl">Web Projects</div></div>
+        <div><div class="num">7.5</div><div class="lbl">CGPA</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-index">01</span><h2>Building with purpose.</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>I'm a <strong>Computer Science &amp; Engineering</strong> student with a strong interest in web development and software engineering.</p>
+        <p>I enjoy creating responsive interfaces, integrating APIs, solving programming problems and continuously improving my skills. My goal is to grow into a capable engineer who can take an idea from concept to a working product.</p>
+      </div>
+      <div class="facts">
+        <div><span>Education</span><span>B.Tech CSE</span></div>
+        <div><span>Focus</span><span>Emerging Software Developer</span></div>
+        <div><span>Approach</span><span>Learn → Build → Improve</span></div>
+        <div><span>Interests</span><span>Web &amp; Software</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-index">02</span><h2>Skills that I use.</h2></div>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="ico">⌘</div>
+        <h3>Languages</h3>
+        <ul><li>C</li><li>C++</li><li>Java</li><li>Python</li><li>JavaScript</li></ul>
+      </div>
+      <div class="skill-card">
+        <div class="ico">◈</div>
+        <h3>Frontend</h3>
+        <ul><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>React</li></ul>
+      </div>
+      <div class="skill-card">
+        <div class="ico">⌁</div>
+        <h3>Backend &amp; Database</h3>
+        <ul><li>Node.js</li><li>Express.js</li><li>MySQL</li><li>MongoDB</li></ul>
+      </div>
+      <div class="skill-card">
+        <div class="ico">⚙</div>
+        <h3>Tools &amp; Design</h3>
+        <ul><li>Git</li><li>GitHub</li><li>Figma</li><li>REST APIs</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-index">03</span><h2>Things I've built.</h2></div>
+
+    <div class="proj">
+      <div class="proj-visual">PYTHON<br>CALCULATOR</div>
+      <div class="proj-body">
+        <div class="proj-tag">PYTHON</div>
+        <h3>Python Calculator</h3>
+        <p>Console-based calculator with two modes: a basic calculator for the four core operations, and a scientific calculator covering square root, powers, trigonometric functions and logarithms.</p>
+        <div class="chips"><span class="chip">Basic Mode</span><span class="chip">Scientific Mode</span><span class="chip">CLI</span></div>
+        <a class="proj-link" href="https://github.com/manthan388064-cmd/Project-1" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-visual">EXPENSE<br>TRACKER</div>
+      <div class="proj-body">
+        <div class="proj-tag">WEB APP</div>
+        <h3>Personal Expense Tracker</h3>
+        <p>A browser-based expense tracker that lets you log daily expenses with description, amount, category and date, then filter and review your spending history at a glance.</p>
+        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Category Filters</span></div>
+        <a class="proj-link" href="https://github.com/manthan388064-cmd/Project-2/blob/main/Project%202.html" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hardware">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-index">04</span><h2>Building beyond the screen.</h2></div>
+    <div class="proj">
+      <div class="proj-visual">ANTI-SINKING<br>CAR</div>
+      <div class="proj-body">
+        <div class="proj-tag">HARDWARE</div>
+        <h3>Anti-Sinking Car</h3>
+        <p>A hardware safety prototype built to keep a vehicle afloat and protect occupants in a submersion scenario — combining mechanical design with a sensor-triggered safety response.</p>
+        <div class="chips"><span class="chip">Hardware Prototype</span><span class="chip">Sensors</span><span class="chip">Safety Innovation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-index">05</span><h2>Beyond the classroom.</h2></div>
+    <div class="proj">
+      <div class="proj-visual">CDP<br>NGO</div>
+      <div class="proj-body">
+        <div class="proj-tag">COMMUNITY DEVELOPMENT</div>
+        <h3>Community Development Project (CDP)</h3>
+        <p>A Community Development Project carried out with an NGO, focused on community engagement, service learning and social responsibility through direct field involvement.</p>
+        <div class="chips"><span class="chip">Field Work</span><span class="chip">Social Responsibility</span><span class="chip">NGO Collaboration</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-index">06</span><h2>Growing through practice.</h2></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Present</div>
+        <h3>B.Tech — Computer Science &amp; Engineering</h3>
+        <p>Current CGPA: 7.5 — building a foundation across data structures, algorithms and core engineering coursework.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-index">07</span><h2>A few things I'm proud of.</h2></div>
+    <div class="mile-grid">
+      <div class="mile"><div class="num">1</div><div class="lbl">Anti-Sinking Car hardware safety project</div></div>
+      <div class="mile"><div class="num">2</div><div class="lbl">Projects showcased in this portfolio</div></div>
+      <div class="mile"><div class="num">CDP</div><div class="lbl">Community Development Project with an NGO — community engagement, service learning and social responsibility through field involvement</div></div>
+    </div>
+    <div class="cert-row">
+      <div class="cert"><div class="c-name">AI Fluency: Framework and Foundation</div><div class="c-meta">CERTIFICATE · 2026</div></div>
+      <div class="cert"><div class="c-name">Programming Fundamentals using Python — Part 1</div><div class="c-meta">CERTIFICATE · 2026</div></div>
+      <div class="cert"><div class="c-name">Programming Fundamentals using Python — Part 2</div><div class="c-meta">CERTIFICATE · 2026</div></div>
+      <div class="cert"><div class="c-name">Introduction to Cyber Security</div><div class="c-meta">CERTIFICATE · 2026</div></div>
+      <div class="cert"><div class="c-name">Certificate of Appreciation</div><div class="c-meta">NGO · 2026</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>Let's build something great.</h2>
+      <p>I'm open to internships, projects and opportunities in software and web engineering.</p>
+      <a class="btn btn-primary" href="mailto:manthan388064@gmail.com?subject=Portfolio%20Opportunity">Get in touch ↗</a>
+      <div class="contact-links">
+        <a href="mailto:manthan388064@gmail.com">manthan388064@gmail.com</a>
+        <a href="#">github.com/manthan</a>
+        <a href="https://www.linkedin.com/in/manthan-manthan-2834b0381/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Manthan · Designed &amp; built with curiosity.</footer>
+
+</body>
+</html>
